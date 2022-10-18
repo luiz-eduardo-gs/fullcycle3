@@ -1,6 +1,7 @@
 package com.luizeduardo.admin.catalogo.domain.category;
 
 import com.luizeduardo.admin.catalogo.domain.AggregateRoot;
+import com.luizeduardo.admin.catalogo.domain.validation.ValidationHandler;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -39,6 +40,11 @@ public class Category extends AggregateRoot<CategoryID> {
 
     public CategoryID getId() {
         return id;
+    }
+
+    @Override
+    public void validate(final ValidationHandler handler) {
+        new CategoryValidator(this, handler).validate();
     }
 
     public String getName() {
