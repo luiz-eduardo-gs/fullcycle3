@@ -1,10 +1,9 @@
 package com.luizeduardo.admin.catalogo.domain.category;
 
+import java.time.Instant;
+
 import com.luizeduardo.admin.catalogo.domain.AggregateRoot;
 import com.luizeduardo.admin.catalogo.domain.validation.ValidationHandler;
-
-import java.time.Instant;
-import java.util.UUID;
 
 public class Category extends AggregateRoot<CategoryID> {
     private String name;
