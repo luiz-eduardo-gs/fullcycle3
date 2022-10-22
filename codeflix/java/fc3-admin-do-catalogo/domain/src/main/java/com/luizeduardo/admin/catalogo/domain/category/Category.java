@@ -5,7 +5,7 @@ import java.time.Instant;
 import com.luizeduardo.admin.catalogo.domain.AggregateRoot;
 import com.luizeduardo.admin.catalogo.domain.validation.ValidationHandler;
 
-public class Category extends AggregateRoot<CategoryID> {
+public class Category extends AggregateRoot<CategoryID> implements Cloneable{
     private String name;
     private String description;
     private boolean active;
@@ -36,6 +36,18 @@ public class Category extends AggregateRoot<CategoryID> {
         final var now = Instant.now();
         final var deletedAt = isActive ? null : now;
         return new Category(id, aName, aDescription, isActive, now, now, deletedAt);
+    }
+
+    public static Category clone(final Category aCategory) {
+        return new Category(
+                aCategory.getId(),
+                aCategory.getName(),
+                aCategory.getDescription(),
+                aCategory.isActive(),
+                aCategory.getCreatedAt(),
+                aCategory.getUpdatedAt(),
+                aCategory.getDeletedAt()
+        );
     }
 
     public CategoryID getId() {
@@ -97,5 +109,14 @@ public class Category extends AggregateRoot<CategoryID> {
 
     public Instant getDeletedAt() {
         return deletedAt;
+    }
+
+    @Override
+    public Category clone() {
+        try {
+            return (Category) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
