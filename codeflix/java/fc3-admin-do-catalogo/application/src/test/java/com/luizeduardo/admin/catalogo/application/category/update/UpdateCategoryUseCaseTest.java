@@ -1,5 +1,6 @@
 package com.luizeduardo.admin.catalogo.application.category.update;
 
+import com.luizeduardo.admin.catalogo.application.category.create.CreateCategoryCommand;
 import com.luizeduardo.admin.catalogo.application.category.create.DefaultCreateCategoryUseCase;
 import com.luizeduardo.admin.catalogo.domain.category.Category;
 import com.luizeduardo.admin.catalogo.domain.category.CategoryGateway;
@@ -63,5 +64,28 @@ public class UpdateCategoryUseCaseTest {
                             && aCategory.getUpdatedAt().isBefore(aUpdatedCategory.getUpdatedAt())
                             && Objects.isNull(aUpdatedCategory.getDeletedAt())
         ));
+    }
+
+    @Test
+    public void givenAInvalidName_whenCallsUpdateCategory_thenShouldReturnDomainException() {
+        final String expectedName = null;
+        final var expectedDescription = "A new movies category.";
+        final var expectedIsActive = true;
+        final var expectedErrorMessage = "'name' should not be null";
+        final var expectedErrorCount = 1;
+        final var aCategory = Category.newCategory("Movi",null,true);
+        final var expectedId = aCategory.getId();
+
+        final var aCommand =
+                UpdateCategoryCommand.with(expectedId.getValue(), expectedName, expectedDescription, expectedIsActive);
+
+        Mockito.when(categoryGateway.findById(Mockito.eq(expectedId)))
+                .thenReturn(Optional.of(Category.clone(aCategory)));
+
+        final var notification = useCase.execute(aCommand).getLeft();
+
+        Assertions.assertEquals(expectedErrorCount, notification.getErrors().size());
+        Assertions.assertEquals(expectedErrorMessage, notification.firstError().message());
+        Mockito.verify(categoryGateway, Mockito.times(0)).update(Mockito.any());
     }
 }
