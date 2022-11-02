@@ -1,6 +1,13 @@
 # Full Cycle 3
 Repository destinated to save all Full Cycle 3 challenges and codes.
 
+## Modules
+
+* All module content should be organized as the example:
+    * ../modules/02-docker/content/trabalhando-com-imagens/criando-primeira-imagem-com-dockerfile/, where 02-docker is the module name, trabalhando-com-imagens is the submodule name and criando-primeira-imagem-com-dockerfile is the video name.
+    * ../modules/02-docker/desafios/ should contain all challenges codes organized by challenge name:
+        * ./modules/02-docker/desafios/desafio-go/ for example  
+
 ## Notes
 
 * All notes will be taken using Simple Note.
@@ -9,6 +16,8 @@ Repository destinated to save all Full Cycle 3 challenges and codes.
     * Each submodule will be a note 'h2' title. Ex.: Iniciando com Docker -> ## Iniciando com Docker
     * Each submodule will be separated from each other using '***'.
     * Each video name will be a 'h3' title. Ex.: Hello world -> ### Hello World
+* Note images will be stored under my Google Drive account. Should be used under the public link: https://drive.google.com/uc?id=FILE_ID.
+
  
 ## Schedule
 
