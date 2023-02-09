@@ -1,0 +1,16 @@
+{
+    "name": "luiz-eduardo-gs/app-php-video-catalog",
+    "description": "App with PHP - Video Catalog",
+    "authors": [
+        {
+            "name": "Luiz Eduardo",
+            "email": "gs.luizeduardo00@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Core\\": "src/Core/"
+        }
+    },
+    "require": {}
+}
